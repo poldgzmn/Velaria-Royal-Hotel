@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>Hotel Booking Form</title>
+</head>
+<body>
+  <div class="glass-container">
+    <h2>Velaria Royal Hotel</h2>
+    <form action="/submit_booking" method="POST">
+
+        <input type="text" name="fullname" placeholder="Full Name" required>
+
+        <input type="email" name="email" placeholder="Email" required>
+
+        <select name="room_type" required>
+            <option value="">Select Room Type</option>
+            <option value="Single Room">Single Room</option>
+            <option value="Double Room">Double Room</option>
+            <option value="Suite">Suite</option>
+        </select>
+
+        <label>Check-in Date:</label>
+        <input type="date" name="check_in" required>
+
+        <label>Check-out Date:</label>
+        <input type="date" name="check_out" required>
+
+        <button type="submit">Submit Booking</button>
+    </form>
+</div>
+</body>
+</html>
