@@ -1,11 +1,20 @@
 import os
 import mysql.connector
+from mysql.connector import Error
 
-def create_connection():
-    return mysql.connector.connect(
-        host=os.environ["MYSQLHOST"],
-        port=os.environ["MYSQLPORT"],
-        user=os.environ["MYSQLUSER"],
-        password=os.environ["MYSQLPASSWORD"],
-        database=os.environ["MYSQLDATABASE"]
+try:
+    connection = mysql.connector.connect(
+        host=os.environ["DB_HOST"],
+        user=os.environ["DB_USER"],
+        password=os.environ["DB_PASSWORD"],
+        database=os.environ["DB_NAME"],
+        port=int(os.environ["DB_PORT"])
     )
+    if connection.is_connected():
+        print("✅ Successfully connected to Railway MySQL!")
+except Error as e:
+    print(f"❌ Database Error: {e}")
+finally:
+    if 'connection' in locals() and connection.is_connected():
+        connection.close()
+
